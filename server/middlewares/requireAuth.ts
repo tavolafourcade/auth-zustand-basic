@@ -24,7 +24,7 @@ export const requireAuth = (req: Request, res: Response, next: NextFunction) => 
     })
 
     // Si el token es válido, se ejecuta el siguiente middleware
-    console.log({user})
+    req.user = user
     next()
   })
   next()

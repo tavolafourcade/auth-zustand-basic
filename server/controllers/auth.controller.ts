@@ -16,6 +16,7 @@ export const loginHandler = (req: Request, res: Response) => {
 // Solo llegaría a esta ruta si está protegida por el middleware de autenticación
 export const profileHandler = (req: Request, res: Response) => {
   return res.json({
+    profile: req.user,
     message: 'Profile data'
   })
 }
