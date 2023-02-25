@@ -1,9 +1,12 @@
 import express from 'express'
-import router from './routes/auth.routes'
 import authRoutes from './routes/auth.routes'
+import cors from 'cors'
 
 const app = express()
 
+app.use(cors({
+  origin: 'http://localhost:5174'
+}))
 app.use(authRoutes)
 
 export default app
