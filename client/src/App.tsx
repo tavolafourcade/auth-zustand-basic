@@ -1,7 +1,10 @@
 import './App.css'
+import LoginPage from './pages/LoginPage'
 
 function App() {
-  return <div>Hello World</div>
+  return <div>
+    <LoginPage/>
+  </div>
 }
 
 export default App
