@@ -1,9 +1,10 @@
-import { loginRequest } from "../api/auth"
+import { loginRequest, profileRequest } from "../api/auth"
 import {useAuthStore} from "../store/auth"
 
 const LoginPage = () => {
 
   const setToken = useAuthStore(state => state.setToken)
+  const setProfile = useAuthStore(store => store.setProfile)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -15,7 +16,8 @@ const LoginPage = () => {
     // Guardando el token recibido del backend
     setToken(resLogin.data.token)
 
-    console.log(resLogin)
+    const profileRes = await profileRequest()
+    setProfile(profileRes.data.profile)
   }
 
   
