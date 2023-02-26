@@ -1,10 +1,12 @@
 import { loginRequest, profileRequest } from "../api/auth"
 import {useAuthStore} from "../store/auth"
+import { useNavigate } from "react-router-dom"
 
 const LoginPage = () => {
 
   const setToken = useAuthStore(state => state.setToken)
   const setProfile = useAuthStore(store => store.setProfile)
+  const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -18,6 +20,8 @@ const LoginPage = () => {
 
     const profileRes = await profileRequest()
     setProfile(profileRes.data.profile)
+
+    navigate('/profile')
   }
 
   
