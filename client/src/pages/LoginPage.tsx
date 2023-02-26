@@ -1,6 +1,9 @@
 import { loginRequest } from "../api/auth"
+import {useAuthStore} from "../store/auth"
 
 const LoginPage = () => {
+
+  const setToken = useAuthStore(state => state.setToken)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -8,6 +11,9 @@ const LoginPage = () => {
     const password = (e.currentTarget[1] as HTMLInputElement).value
 
     const resLogin = await loginRequest(email, password)
+
+    // Guardando el token recibido del backend
+    setToken(resLogin.data.token)
 
     console.log(resLogin)
   }
