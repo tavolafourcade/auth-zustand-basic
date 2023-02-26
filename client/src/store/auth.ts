@@ -4,6 +4,7 @@ import { persist } from 'zustand/middleware'
 type State = {
   token: string,
   profile: any
+  isAuth: boolean
 }
 
 type Actions = {
@@ -16,8 +17,10 @@ export const useAuthStore = create(persist<State & Actions>(
   (set) => ({
     token: '',
     profile:'',
+    isAuth: false,
     setToken: (token: string) => set((state) => ({
-      token 
+      token,
+      isAuth: true 
     })),
     setProfile: (profile: any) => set((state) => ({
       profile

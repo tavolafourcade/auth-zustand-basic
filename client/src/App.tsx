@@ -5,8 +5,12 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import ProfilePage from './pages/ProfilePage'
 import RegisterPage from './pages/RegisterPage'
+import ProtectedRoute from './components/ProtectedRoute';
+import { useAuthStore } from './store/auth';
 
 function App() {
+
+  const isAuth = useAuthStore(state => state.isAuth)
   return (
     <BrowserRouter>
     <Navigation/>
@@ -14,7 +18,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route element={<ProtectedRoute isAllowed={isAuth}/>}>
+          <Route path="/profile" element={<ProfilePage />}/>
+          <Route path="/dashboard" element={<ProfilePage/>}/>
+        </Route>
 
       </Routes>
     </BrowserRouter>
